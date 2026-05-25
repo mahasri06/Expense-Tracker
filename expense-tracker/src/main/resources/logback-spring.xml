@@ -1,0 +1,21 @@
+<configuration>
+    <!-- Spring Boot defaults -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+    <!-- Console + File -->
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <include resource="org/springframework/boot/logging/logback/file-appender.xml" />
+
+    <!-- File location -->
+    <property name="LOG_FILE" value="logs/app.log" />
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+
+    <!-- Application package -->
+    <logger name="com.expensetracker" level="DEBUG" />
+
+</configuration>
