@@ -2,7 +2,7 @@ package com.expensetracker.expense_tracker.service;
 
 import com.expensetracker.expense_tracker.DTO.ExpenseFilterDto;
 import com.expensetracker.expense_tracker.repository.ExpenseSpecification;
-import org.apache.coyote.BadRequestException;
+// removed BadRequestException import
 import org.springframework.data.domain.*;
 import com.expensetracker.expense_tracker.DTO.ExpenseRequestDto;
 import com.expensetracker.expense_tracker.DTO.ExpenseResponseDto;
@@ -88,7 +88,7 @@ public class ExpenseServiceImpl implements ExpenseService{
 
         if(filterDto.getMinAmount() != null && filterDto.getMaxAmount() != null) {
             if (filterDto.getMinAmount().compareTo(filterDto.getMaxAmount()) > 0) {
-                throw new BadRequestException("Min Amount cannot be greater than Max Amount");
+                throw new IllegalArgumentException("Min Amount cannot be greater than Max Amount");
             }
         }
 
@@ -96,7 +96,7 @@ public class ExpenseServiceImpl implements ExpenseService{
                 Sort.by(sortBy).descending():
                 Sort.by(sortBy).ascending();
 
-        Specification<Expense> spec = ExpenseSpecification.getFilteredExpenses(filterDto , sort);
+        Specification<Expense> spec = ExpenseSpecification.getFilteredExpenses(filterDto);
 
         Pageable pageable = PageRequest.of(page , size , sort);
 

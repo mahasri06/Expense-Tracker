@@ -21,5 +21,5 @@ public interface ExpenseService {
 
     ExpenseResponseDto updateExpense(Long id , ExpenseRequestDto expense);
 
-    List<Expense> getFilteredExpenses(ExpenseFilterDto filterDto);
+    Page<ExpenseResponseDto> getFilteredExpenses(ExpenseFilterDto filterDto, int page, int size, String sortBy, String sortDir);
 }
